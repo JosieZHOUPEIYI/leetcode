@@ -9,7 +9,7 @@
  * @param {string} s
  * @return {number}
  */
-var lengthOfLongestSubstring = function(s) {
+var lengthOfLongestSubstring1 = function(s) {
     // 滑动窗口
     const strArr = s.split('')
     let temp = '' //窗口存储当前字符串，是不重复的字符
@@ -30,3 +30,19 @@ var lengthOfLongestSubstring = function(s) {
 };
 // @lc code=end
 
+var lengthOfLongestSubstring2 = function(s){
+    let str = ''
+    const strArr = s.split("")
+    let max = 0
+    for(i=0;i<strArr.length;i++){
+        let index = str.indexOf(strArr[i])
+        if(index!=-1){//存在
+            str = str.substring(index)
+        }
+        max = Math.max(max,str.length)
+        str+=strArr[i]
+    }
+    return max
+}
+
+console.log(lengthOfLongestSubstring2('abcdabcdf'));

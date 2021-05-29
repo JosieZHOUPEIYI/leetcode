@@ -51,7 +51,7 @@ var longestPalindrome = function(s) {
 //5、处理abba情况，当right值等于right+1，right右移一个位置，i也右移一个位置
 //6、优化当s.length- i + 1 < 目前maxlen的一半时就不用遍历了，因为剩下的不可能大于maxlen
 //index = length-1 length = index + 1
-function longestPalindrome_(s){
+function longestPalindrome__(s){
     let maxlen = 0;
     let start = 0
     if(s.length<2)return s
@@ -74,5 +74,33 @@ function longestPalindrome_(s){
     return s.substring(start,maxlen+start)
 }
 
-console.log(longestPalindrome_('acbbca'));
+
+
+//最长回文 left-- =? right--
+const longestPalindrome_ = (s)=>{
+    const strArr = s.split('')
+    let max = 0
+    let str = ''
+    if(s.length<=1) return s
+    for (let index = 0; index < strArr.length; index++) {
+        let [left,right] = [index,index]
+        while (left>=0 && right <strArr.length-1 && strArr[index] === strArr[right+1]) {
+            right++
+        }
+        while (left>=0 && right <strArr.length-1 && strArr[left-1] === strArr[right+1]) {
+            right++
+            left--
+        }
+        if(max<right-left+1){
+            max = right-left+1
+            str = s.substring(left,right+1)
+        }
+    }
+    console.log(max);
+    return str
+    // if(max > right-left+1)
+}
+
+console.log('maxlen',longestPalindrome_('acbbca'));
+
 

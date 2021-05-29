@@ -76,5 +76,29 @@ function getKth_(nums1,start1,end1,nums2,start2,end2,k){
 
 const nums1 = [1,2,3,7,9]
 const nums2 = [6,7,8,9,10]
-console.log('取前k小',getKth_(nums1,0,nums1.length-1,nums2,0,nums2.length-1,5));
+// console.log('取前k小',getKth_(nums1,0,nums1.length-1,nums2,0,nums2.length-1,5));
 
+//前k小 len = index + 1  index = len-1
+function __getKth(nums1,start1,end1,nums2,start2,end2,k) {
+    const len1 = end1- start1 + 1;
+    const len2 = end2- start2 + 1;
+    //边界
+    //1始终保持l1最最短
+    if(len1<len2) return __getKth(nums2,start2,end2,nums1,start1,end1,k)
+    //2、l1长度最先到0，到0 就表示k+1就是目标值
+    if(len1.length=0) return nums2[start2+k-1]
+    if(k===1)return Math.min(nums1[start1+k-1],nums2[start2+k-1])
+    //3、比较l1和l2 2/k位置的值大小，对比len ,小的那个去掉2/k或 len 个数
+    const tar = Math.floor(k/2) //每次位移数
+    const tar1 = start1 + Math.floor(Math.min(len1,tar))
+    const tar2 = start2 + Math.floor(Math.min(len2,tar))
+    //4、改变num1 num2 start位置 递归 
+    if(nums1[tar1]>nums2[tar2]){//重置start2
+        return __getKth(nums1,start1,end1,nums2,tar2,end2,k - Math.min(len1,tar))
+    }else{
+        return __getKth(nums1,tar1,end1,nums2,start2,end2,k - Math.min(len1,tar))
+    }
+}   
+
+
+console.log('取前k小',__getKth(nums1,0,nums1.length-1,nums2,0,nums2.length-1,5));
