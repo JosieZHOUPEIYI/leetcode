@@ -1,9 +1,8 @@
 /*
  * @lc app=leetcode.cn id=8 lang=javascript
  *
- * [8] 字符串转换整数 (atoi)
+ * [8] 字符串转换整数11 (atoi)
  */
-
 // @lc code=start
 /**
  * @param {string} s
