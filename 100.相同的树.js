@@ -18,13 +18,13 @@
  * @param {TreeNode} q
  * @return {boolean}
  */
-var isSameTree = function(p, q) {
+var isSameTree = function (p, q) {
     // 树形是一个递归结构
     // 什么时候相等--当前节点的值和left和right值相等，
-    if(p===null && q===null)return true
-    if(p===null || q===null) return false
-    if(p.val !== q.val)return false
-    return isSameTree(p.left,q.left) && isSameTree(p.right,q.right)
+    if (p === null && q === null) return true
+    if (p === null || q === null) return false
+    if (p.val !== q.val) return false
+    return isSameTree(p.left, q.left) && isSameTree(p.right, q.right)
 
 };
 // @lc code=end
