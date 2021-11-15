@@ -10,7 +10,7 @@
  * @return {number}
  */
 var maxProfit = function (prices) {
-    //最低买如，最高卖出
+    //最低买入，最高卖出
     let max = 0
     let minprices = prices[0]
     for (let i = 1; i < prices.length; i++) {

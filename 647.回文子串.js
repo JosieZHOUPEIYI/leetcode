@@ -21,12 +21,15 @@ var countSubstrings = function (s) {
     const len = s.length
     // let dp = new Array(len)
     // dp.map(i => dp[i] = false)
-    let dp = Array.from(Array(len), () => Array(len).fill(false));
+    // let dp = Array.from(Array(len), () => Array(len).fill(false));
+    let dp = []
     let max = 0
     // i为行，j为列， 重下往上算，确保dp[i + 1][j - 1]在dp[i][j]前计算好
     //
     for (let i = len - 1; i >= 0; i--) {
+        dp[i] = []
         for (let j = i; j < len; j++) {
+            dp[i][j] = false
             if (s[i] === s[j]) {
                 if (j - i < 2) { dp[i][j] = true }
                 else {
