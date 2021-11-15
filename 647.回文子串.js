@@ -53,6 +53,7 @@ var countSubstrings = function (s) {
     //     }
     // }
     // return max
+
 };
 
 console.log(countSubstrings('abc'));
